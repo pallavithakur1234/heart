@@ -2,7 +2,6 @@ import config
 from flask import Flask, request, jsonify, render_template
 from utils import HeartDisease
 import traceback
-import pymongo
 
 app = Flask(__name__)
 
@@ -33,13 +32,7 @@ def predict_disease():
             ca       = eval(data('ca'))
             thal     = eval(data('thal'))
 
-            mongo_client=pymongo.MongoClient("mongodb://localhost:27017")
-            db=mongo_client["heart_project"]
-            data_collection=db["patient_detail"]
-            data_collection.insert_one({"age":age,"sex":sex,"cp":cp,"trestbps":trestbps,"chol":chol ,"fbs":fbs,"restecg":restecg,
-            "thalach":thalach,"exang":exang,"oldpeak":oldpeak,"slope":slope,"ca":ca,"thal":thal})
-
-
+            
             heart_diseas = HeartDisease(age,sex,cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal)
             predict_disease = heart_diseas.get_heart_disease_prediction()
 
