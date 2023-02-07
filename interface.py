@@ -60,11 +60,7 @@ def predict_disease():
             ca       = eval(data('ca'))
             thal     = eval(data('thal'))
 
-            mongo_client=pymongo.MongoClient("mongodb://localhost:27017")
-            db=mongo_client["diabetes_project"]
-            data_collection=db["patient_detail"]
-            data_collection.insert_one({"age":age,"sex":sex,"cp":cp,"trestbps":trestbps,"chol":chol ,"fbs":fbs,"restecg":restecg,
-            "thalach":thalach,"exang":exang,"oldpeak":oldpeak,"slope":slope,"ca":ca,"thal":thal})
+           
 
 
             heart_diseas = HeartDisease(age,sex,cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal)
